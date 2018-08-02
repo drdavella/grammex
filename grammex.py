@@ -7,10 +7,12 @@ grammar = Grammar(
     dot = "\\."
     sign = "[+-]?"
     digits = "[0-9]*"
-    complex = "[iIjJ]"
+    eye = "[iIjJ]"
     number = digits / (dot digits) / (digits dot digits)
     scientific = number "[eE]" sign digits
     real = (sign number) / (sign scientific)
+    imag = (number eye) / (scientific eye)
+    complex = real / (sign imag) / (real "[+-]" imag)
     """)
 
 
