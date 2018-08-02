@@ -16,12 +16,12 @@ grammar = Grammar(
 
 def build_regex(node):
 
-    print(node)
     if isinstance(node, Literal):
         return node.literal
 
     if isinstance(node, OneOf):
-        return "|".join(["({})".format(build_regex(x)) for x in node.members])
+        regex = "|".join(["({})".format(build_regex(x)) for x in node.members])
+        return "({})".format(regex)
 
     result = ''
     for m in node.members:
